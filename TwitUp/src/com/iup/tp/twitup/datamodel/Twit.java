@@ -228,7 +228,7 @@ public class Twit {
 
 		sb.append("[");
 		sb.append(this.getClass().getName());
-		sb.append("] : ");
+		sb.append("] : ");	
 		sb.append(this.getUuid());
 		sb.append(" {");
 		sb.append(this.getText());

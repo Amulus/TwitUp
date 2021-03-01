@@ -2,6 +2,7 @@ package com.iup.tp.twitup.core;
 
 import java.io.File;
 
+import com.iup.tp.databaseobserver.AppDatabaseObserver;
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
@@ -43,12 +44,14 @@ public class Twitup {
 	/**
 	 * Idnique si le mode bouchoné est activé.
 	 */
-	protected boolean mIsMockEnabled = false;
+	protected boolean mIsMockEnabled = true;
 
 	/**
 	 * Nom de la classe de l'UI.
 	 */
 	protected String mUiClassName;
+
+	private AppDatabaseObserver mConsole;
 
 	/**
 	 * Constructeur.
@@ -59,6 +62,8 @@ public class Twitup {
 
 		// Initialisation de la base de données
 		this.initDatabase();
+		
+		this.initObserver();
 
 		if (this.mIsMockEnabled) {
 			// Initialisation du bouchon de travail
@@ -83,7 +88,6 @@ public class Twitup {
 	 */
 	protected void initGui() {
 		// this.mMainView...
-		this.mMainView = new TwitupMainView();
 	}
 
 	/**
@@ -115,7 +119,8 @@ public class Twitup {
 		TwitupMock mock = new TwitupMock(this.mDatabase, this.mEntityManager);
 		mock.showGUI();
 	}
-
+	
+	
 	/**
 	 * Initialisation de la base de données
 	 */
@@ -123,7 +128,15 @@ public class Twitup {
 		mDatabase = new Database();
 		mEntityManager = new EntityManager(mDatabase);
 	}
-
+	
+	/**
+	 * Initialisation de l'observer de la base de données
+	 */
+	
+	protected void initObserver() {
+			mConsole = new AppDatabaseObserver();
+			mDatabase.addObserver(mConsole);
+		}
 	/**
 	 * Initialisation du répertoire d'échange.
 	 * 
