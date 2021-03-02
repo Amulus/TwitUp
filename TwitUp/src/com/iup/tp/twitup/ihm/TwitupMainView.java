@@ -18,7 +18,9 @@ public class TwitupMainView extends JFrame{
     private  JMenu fileMen = new JMenu("Fichier");
     private  JMenu aboutMen = new JMenu("?");
     private JMenuItem quitItem = new JMenu("Quitter");
-    private URL logo20 = getClass().getClassLoader().getResource("images/logoIUP_20.jpg");
+	private	JFileChooser chooser = new JFileChooser();
+
+	private URL logo20 = getClass().getClassLoader().getResource("images/logoIUP_20.jpg");
     private URL logo50 = getClass().getClassLoader().getResource("images/logoIUP_50.jpg");
     private URL editIcon = getClass().getClassLoader().getResource("images/editIcon_20.png");
     private URL exitIcon = getClass().getClassLoader().getResource("images/exitIcon_20.png");
@@ -98,10 +100,15 @@ public class TwitupMainView extends JFrame{
 				
 			}
         });
-        //fileMen.setIcon(new ImageIcon(logo50).getImage());
         fileMen.add(quitItem);
         setJMenuBar(menuBar);
 
+        //JChooser
+		int returnVal = chooser.showOpenDialog(null);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println("You chose to open this file: " +
+					chooser.getSelectedFile().getName());
+		}
     }
 
 
