@@ -17,7 +17,7 @@ public class TwitupMainView extends JFrame{
     private JMenuBar menuBar = new JMenuBar();
     private  JMenu fileMen = new JMenu("Fichier");
     private  JMenu aboutMen = new JMenu("?");
-    private JMenuItem quitItem = new JMenu("Quitter");
+    private JMenuItem quitItem = new JMenuItem("Quitter");
 	private	JFileChooser chooser = new JFileChooser();
 
 	private URL logo20 = getClass().getClassLoader().getResource("images/logoIUP_20.jpg");
