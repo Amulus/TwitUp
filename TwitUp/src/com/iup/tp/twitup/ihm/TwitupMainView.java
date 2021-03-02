@@ -73,26 +73,30 @@ public class TwitupMainView extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
             	dispose();                }
-            }
-            @Override
-            public void mousePressed(MouseEvent e) {
 
-            }
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
 
-            @Override
-            public void mouseReleased(MouseEvent e) {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
 
-            }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
         //fileMen.setIcon(new ImageIcon(logo50).getImage());
         fileMen.add(quitItem);
