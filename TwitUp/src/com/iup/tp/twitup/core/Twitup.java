@@ -87,7 +87,8 @@ public class Twitup {
 	 * Initialisation de l'interface graphique.
 	 */
 	protected void initGui() {
-		// this.mMainView...
+		this.mMainView = new TwitupMainView();
+		this.mMainView.setVisible(true);
 	}
 
 	/**

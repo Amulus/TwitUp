@@ -3,6 +3,9 @@ package com.iup.tp.twitup.ihm;
 import com.iup.tp.twitup.core.Twitup;
 
 import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
@@ -14,7 +17,7 @@ public class TwitupMainView extends JFrame{
     private static final String icon20 = "../../../resources/images/logoIUP20.jpg";
     private JMenuBar menuBar = new JMenuBar();
     private  JMenu fileMen = new JMenu("Fichier");
-    private  JMenu aboutMen = new JMenu("A propos");
+    private  JMenu aboutMen = new JMenu("?");
     private JMenuItem quitItem = new JMenu("Quitter");
     private URL logo20 = getClass().getClassLoader().getResource("images/logoIUP_20.jpg");
     private URL logo50 = getClass().getClassLoader().getResource("images/logoIUP_50.jpg");
@@ -30,6 +33,42 @@ public class TwitupMainView extends JFrame{
         menuBar.add(fileMen);
         menuBar.add(aboutMen);
         setIconImage(new ImageIcon(logo20).getImage());
+        aboutMen.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				JFrame f = new JFrame();
+				JOptionPane.showMessageDialog(f,"Hello, Welcome to Javatpoint.",null, getDefaultCloseOperation(), new ImageIcon(logo50));
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			
+        	
+        });
         quitItem.addMouseListener(new MouseListener(){
             @Override
             public void mouseClicked(MouseEvent e) {
