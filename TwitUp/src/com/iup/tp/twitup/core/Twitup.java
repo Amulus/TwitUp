@@ -7,8 +7,10 @@ import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
+import com.iup.tp.twitup.ihm.TwitupLoginView;
 import com.iup.tp.twitup.ihm.TwitupMainView;
 import com.iup.tp.twitup.ihm.TwitupMock;
+import com.iup.tp.twitup.ihm.TwitupTwitView;
 
 /**
  * Classe principale l'application.
@@ -87,7 +89,9 @@ public class Twitup {
 	 * Initialisation de l'interface graphique.
 	 */
 	protected void initGui() {
+
 		this.mMainView = new TwitupMainView();
+		initLoginView();
 	}
 
 	/**
@@ -149,6 +153,20 @@ public class Twitup {
 
 		mWatchableDirectory.initWatching();
 		mWatchableDirectory.addObserver(mEntityManager);
+	}
+
+	protected  void initLoginView(){
+		TwitupLoginView loginView = new TwitupLoginView();
+		mMainView.getContentPane().add(loginView);
+		mMainView.repaint();
+		mMainView.revalidate();
+	}
+
+	protected  void initTwitView(){
+		TwitupTwitView twitView = new TwitupTwitView();
+		mMainView.getContentPane().add(twitView);
+		mMainView.repaint();
+		mMainView.revalidate();
 	}
 
 	public void show() {

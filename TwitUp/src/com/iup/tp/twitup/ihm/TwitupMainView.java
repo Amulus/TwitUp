@@ -14,90 +14,90 @@ import java.net.URL;
  * Classe de la vue principale de l'application.
  */
 public class TwitupMainView extends JFrame{
-    private JMenuBar menuBar = new JMenuBar();
-    private  JMenu fileMen = new JMenu("Fichier");
-    private  JMenu aboutMen = new JMenu("?");
-    private JMenuItem quitItem = new JMenuItem("Quitter");
-	private	JFileChooser chooser = new JFileChooser();
+    protected JMenuBar menuBar = new JMenuBar();
+    protected  JMenu fileMen = new JMenu("Fichier");
+    protected  JMenu aboutMen = new JMenu("?");
+    protected JMenuItem quitItem = new JMenuItem("Quitter");
+	protected	JFileChooser chooser = new JFileChooser();
 
-	private URL logo20 = getClass().getClassLoader().getResource("images/logoIUP_20.jpg");
-    private URL logo50 = getClass().getClassLoader().getResource("images/logoIUP_50.jpg");
-    private URL editIcon = getClass().getClassLoader().getResource("images/editIcon_20.png");
-    private URL exitIcon = getClass().getClassLoader().getResource("images/exitIcon_20.png");
+	protected URL logo20 = getClass().getClassLoader().getResource("images/logoIUP_20.jpg");
+    protected URL logo50 = getClass().getClassLoader().getResource("images/logoIUP_50.jpg");
+    protected URL editIcon = getClass().getClassLoader().getResource("images/editIcon_20.png");
+    protected URL exitIcon = getClass().getClassLoader().getResource("images/exitIcon_20.png");
 
     public TwitupMainView(){
         setTitle("TwitUP");
         setSize(400,300);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         menuBar.add(fileMen);
         menuBar.add(aboutMen);
+
+		getContentPane().setLayout(new BorderLayout());
         setIconImage(new ImageIcon(logo20).getImage());
         quitItem.setIcon(new ImageIcon(exitIcon));
         aboutMen.addMouseListener(new MouseListener() {
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				JFrame f = new JFrame();
-				JOptionPane.showMessageDialog(f,"Hello, Welcome to Javatpoint.",null, getDefaultCloseOperation(), new ImageIcon(logo50));
+				JOptionPane.showMessageDialog(TwitupMainView.this,"Hello, Welcome to Javatpoint.",null, getDefaultCloseOperation(), new ImageIcon(logo50));
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
-			
-        	
+
+
         });
         quitItem.addMouseListener(new MouseListener(){
             @Override
             public void mouseClicked(MouseEvent e) {
-            	dispose();                }
-
+				System.exit(0);
+			}
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
         });
         fileMen.add(quitItem);

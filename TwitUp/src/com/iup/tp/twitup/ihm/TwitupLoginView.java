@@ -17,10 +17,20 @@ public class TwitupLoginView extends JPanel {
     }
 
     public void addComponents() {
-        add(userLabel);
-        add(userField);
-        add(pwdLabel);
-        add(pwdField);
-        add(loginButton);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = gbc.gridy = 0;
+        add(userLabel, gbc);
+        gbc.insets = new Insets(0, 15, 0, 0);
+        gbc.gridx = 1; gbc.gridy = 0;
+        add(userField, gbc);
+        gbc.insets = new Insets(0, 15, 0, 0);
+        gbc.gridx = 0; gbc.gridy = 1;
+        add(pwdLabel, gbc);
+        gbc.insets = new Insets(0, 15, 0, 0);
+        gbc.gridx = 1; gbc.gridy = 1;
+        add(pwdField, gbc);
+        gbc.gridx = 0; gbc.gridy = 2;gbc.gridwidth = 3;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(loginButton,gbc);
     }
 }
