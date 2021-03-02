@@ -1,7 +1,6 @@
 package com.iup.tp.twitup.ihm;
 
 import com.iup.tp.twitup.core.Twitup;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
