@@ -26,18 +26,37 @@ public class TwitupMainView extends JFrame{
     protected URL exitIcon = getClass().getClassLoader().getResource("images/exitIcon_20.png");
 
     public TwitupMainView(){
-        setTitle("TwitUP");
-        setSize(400,300);
-        setResizable(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        menuBar.add(fileMen);
-        menuBar.add(aboutMen);
+    	initFrame();
+       	createMenu();
 
+        //JChooser
+		int returnVal = chooser.showOpenDialog(null);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println("You chose to open this file: " +
+					chooser.getSelectedFile().getName());
+		}
+    }
+
+	public void initFrame(){
+		setTitle("TwitUP");
+		setSize(400,300);
+		setResizable(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
-        setIconImage(new ImageIcon(logo20).getImage());
-        quitItem.setIcon(new ImageIcon(exitIcon));
-        aboutMen.addMouseListener(new MouseListener() {
+		setIconImage(new ImageIcon(logo20).getImage());
+		quitItem.setIcon(new ImageIcon(exitIcon));
+
+	}
+	public void createMenu(){
+
+		menuBar.add(fileMen);
+		menuBar.add(aboutMen);
+		fileMen.add(quitItem);
+		setJMenuBar(menuBar);
+
+
+		aboutMen.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -70,10 +89,10 @@ public class TwitupMainView extends JFrame{
 
 
 
-        });
-        quitItem.addMouseListener(new MouseListener(){
-            @Override
-            public void mouseClicked(MouseEvent e) {
+		});
+		quitItem.addMouseListener(new MouseListener(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
 			@Override
@@ -99,17 +118,6 @@ public class TwitupMainView extends JFrame{
 				// TODO Auto-generated method stub
 
 			}
-        });
-        fileMen.add(quitItem);
-        setJMenuBar(menuBar);
-
-        //JChooser
-		int returnVal = chooser.showOpenDialog(null);
-		if(returnVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println("You chose to open this file: " +
-					chooser.getSelectedFile().getName());
-		}
-    }
-
-
+		});
+	}
 }
