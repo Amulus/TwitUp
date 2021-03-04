@@ -20,12 +20,13 @@ public class TwitupMainView extends JFrame{
     protected JMenuItem quitItem = new JMenuItem("Quitter");
 	protected	JFileChooser chooser = new JFileChooser();
 
-	protected URL logo20 = getClass().getClassLoader().getResource("images/logoIUP_20.jpg");
-    protected URL logo50 = getClass().getClassLoader().getResource("images/logoIUP_50.jpg");
-    protected URL editIcon = getClass().getClassLoader().getResource("images/editIcon_20.png");
-    protected URL exitIcon = getClass().getClassLoader().getResource("images/exitIcon_20.png");
+	protected URL logo20 = getClass().getClassLoader().getResource("resources/images/logoIUP_20.jpg");
+    protected URL logo50 = getClass().getClassLoader().getResource("resources/images/logoIUP_50.jpg");
+    protected URL editIcon = getClass().getClassLoader().getResource("resources/images/editIcon_20.png");
+    protected URL exitIcon = getClass().getClassLoader().getResource("resources/images/exitIcon_20.png");
 
     public TwitupMainView(){
+		System.out.println(getClass().getClassLoader());
     	initFrame();
        	createMenu();
 
@@ -44,8 +45,13 @@ public class TwitupMainView extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
-		setIconImage(new ImageIcon(logo20).getImage());
-		quitItem.setIcon(new ImageIcon(exitIcon));
+		try {
+			setIconImage(new ImageIcon(logo20).getImage());
+			quitItem.setIcon(new ImageIcon(exitIcon));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 
 	}
 	public void createMenu(){
