@@ -1,27 +1,32 @@
 package com.iup.tp.twitup.core;
 
 import java.io.File;
+import java.nio.file.attribute.UserPrincipal;
+import java.util.HashSet;
+import java.util.UUID;
 
 import com.iup.tp.databaseobserver.AppDatabaseObserver;
 import com.iup.tp.twitup.datamodel.Database;
-import com.iup.tp.twitup.datamodel.IDatabase;
+import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
+import com.iup.tp.twitup.events.login.ILoginObserver;
 import com.iup.tp.twitup.ihm.TwitupLoginView;
 import com.iup.tp.twitup.ihm.TwitupMainView;
-import com.iup.tp.twitup.ihm.TwitupMock;
-import com.iup.tp.twitup.ihm.TwitupTwitView;
 
+import com.iup.tp.twitup.ihm.TwitupTwitView;
+import com.iup.tp.twitup.events.login.LoginController;
+import com.iup.tp.twitup.ihm.TwitupMock;
 /**
  * Classe principale l'application.
  * 
  * @author S.Lucas
  */
-public class Twitup {
+public class Twitup implements ILoginObserver{
 	/**
 	 * Base de données.
 	 */
-	protected IDatabase mDatabase;
+	protected Database mDatabase;
 
 	/**
 	 * Gestionnaire des entités contenu de la base de données.
@@ -46,6 +51,9 @@ public class Twitup {
 	/**
 	 * Idnique si le mode bouchoné est activé.
 	 */
+
+
+
 	protected boolean mIsMockEnabled = false;
 
 	/**
@@ -53,8 +61,10 @@ public class Twitup {
 	 */
 	protected String mUiClassName;
 
+	protected  LoginController loginController;
 	private AppDatabaseObserver mConsole;
 
+	public static User userLogged;
 	/**
 	 * Constructeur.
 	 */
@@ -77,6 +87,8 @@ public class Twitup {
 
 		// Initialisation du répertoire d'échange
 		this.initDirectory();
+
+		this.initObserver();
 	}
 
 	/**
@@ -91,7 +103,7 @@ public class Twitup {
 	protected void initGui() {
 
 		this.mMainView = new TwitupMainView();
-		initTwitView();
+		initLoginView();
 	}
 
 	/**
@@ -101,6 +113,7 @@ public class Twitup {
 	 * pouvoir utiliser l'application</b>
 	 */
 	protected void initDirectory() {
+		//mMainView;
 	}
 
 	/**
@@ -131,6 +144,8 @@ public class Twitup {
 	protected void initDatabase() {
 		mDatabase = new Database();
 		mEntityManager = new EntityManager(mDatabase);
+		User ere= new User(UUID.randomUUID(), "test", "--", "test", new HashSet<String>(), "");
+		mDatabase.addUser(ere);
 	}
 	
 	/**
@@ -156,8 +171,8 @@ public class Twitup {
 	}
 
 	protected  void initLoginView(){
-		TwitupLoginView loginView = new TwitupLoginView();
-		mMainView.getContentPane().add(loginView);
+		loginController = new LoginController(mDatabase);
+		mMainView.getContentPane().add(loginController.loginView);
 		mMainView.repaint();
 		mMainView.revalidate();
 	}
@@ -169,7 +184,23 @@ public class Twitup {
 		mMainView.revalidate();
 	}
 
+
+
 	public void show() {
 		this.mMainView.setVisible(true);
+	}
+
+	@Override
+	public void notifyLogin(String u, String p) {}
+
+	@Override
+	public void notifyRegister() {
+
+	}
+
+	@Override
+	public void notifyTwit() {
+		System.out.println("loading");
+		initTwitView();
 	}
 }

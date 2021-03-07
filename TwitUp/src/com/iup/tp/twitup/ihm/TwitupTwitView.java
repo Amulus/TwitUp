@@ -8,7 +8,7 @@ import java.io.File;
 
 
 
-public class TwitupTwitView extends JPanel {
+public class TwitupTwitView extends JPanel{
     protected JLabel name;
     protected JLabel avatar;
     protected JTextArea textArea;

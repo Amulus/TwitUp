@@ -25,18 +25,11 @@ public class TwitupMainView extends JFrame{
     protected URL editIcon = getClass().getClassLoader().getResource("resources/images/editIcon_20.png");
     protected URL exitIcon = getClass().getClassLoader().getResource("resources/images/exitIcon_20.png");
 
+
     public TwitupMainView(){
-		System.out.println(getClass().getClassLoader());
     	initFrame();
        	createMenu();
-
-        //JChooser
-		int returnVal = chooser.showOpenDialog(null);
-		if(returnVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println("You chose to open this file: " +
-					chooser.getSelectedFile().getName());
-		}
-    }
+	}
 
 	public void initFrame(){
 		setTitle("TwitUP");
@@ -51,79 +44,26 @@ public class TwitupMainView extends JFrame{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int choice = chooser.showOpenDialog(this);
+		if(choice== JFileChooser.CANCEL_OPTION){
+			this.close();
+		}
 	}
-	public void createMenu(){
 
+	private void close() {
+    	System.exit(0);
+	}
+
+	public void createMenu(){
 		menuBar.add(fileMen);
 		menuBar.add(aboutMen);
 		fileMen.add(quitItem);
 		setJMenuBar(menuBar);
 
 
-		aboutMen.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				JOptionPane.showMessageDialog(TwitupMainView.this,"Hello, Welcome to Javatpoint.",null, getDefaultCloseOperation(), new ImageIcon(logo50));
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-
-
-		});
-		quitItem.addMouseListener(new MouseListener(){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		aboutMen.addActionListener(
+						e -> JOptionPane.showMessageDialog(TwitupMainView.this,"Hello, Welcome to Javatpoint.",null, getDefaultCloseOperation(), new ImageIcon(logo50)));
+		quitItem.addActionListener(e->this.close());
 	}
 }
