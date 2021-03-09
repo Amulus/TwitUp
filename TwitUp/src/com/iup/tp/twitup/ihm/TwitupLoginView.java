@@ -57,6 +57,7 @@ public class TwitupLoginView extends JPanel {
         registerButton.addActionListener(e -> doRegsiter());
     }
     protected void doRegsiter() {
+        listeners.forEach(ILoginObserver::notifyRegister);
     }
 
     public void doLogin(String username, String password) {

@@ -1,5 +1,7 @@
 package com.iup.tp.twitup.ihm;
 
+import com.iup.tp.twitup.datamodel.Twit;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +28,12 @@ public class TwitupTwitView extends JPanel{
     public TwitupTwitView() {
         setLayout(new GridBagLayout());
         initComposant("patrick" ,"@patpat", "sdkljfdsklfjdsklfjdkslnf,ze;nbjhzrbjk", new ImageIcon(getClass().getClassLoader().getResource("resources/images/logoIUP_20.jpg")));
+        addComposant();
+    }
+
+    public TwitupTwitView(Twit t) {
+        setLayout(new GridBagLayout());
+        initComposant(t.getTwiter().getName(),t.getTwiter().getUserTag(),t.getText(),new ImageIcon(t.getTwiter().getAvatarPath()));
         addComposant();
     }
 

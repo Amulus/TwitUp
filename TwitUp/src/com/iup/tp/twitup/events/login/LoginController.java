@@ -2,6 +2,7 @@ package com.iup.tp.twitup.events.login;
 
 import java.util.*;
 
+import com.iup.tp.twitup.core.ITwitUpObserver;
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.core.Twitup;
 import com.iup.tp.twitup.datamodel.User;
@@ -13,10 +14,12 @@ import javax.swing.*;
 public class LoginController implements ILoginObserver {
     public Database mDatabase;
     public TwitupLoginView loginView;
+    public List<ITwitUpObserver> listeners;
 
     public LoginController(Database database) {
         mDatabase = database;
         loginView= new TwitupLoginView();
+        listeners = new ArrayList<>();
         loginView.addListener(this);
     }
 
@@ -40,16 +43,27 @@ public class LoginController implements ILoginObserver {
         if(userInConnexion!= null){
             doLog(userInConnexion);
             System.out.println("Réussi");
-            notifyTwit();
+            doTwit();
         }
     }
 
 
     @Override
-    public void notifyRegister() {}
+    public void notifyRegister() {
+        listeners.forEach(ITwitUpObserver::notifyLoginToRegister);
+    }
 
-    @Override
-    public void notifyTwit() {
+    public void doTwit() {
+        listeners.forEach(ITwitUpObserver::notifyLoginToTwitList);
+    }
+
+
+    public void addListener(ITwitUpObserver listener) {
+        listeners.add(listener);
+    }
+
+    public void removeListener(ITwitUpObserver listener) {
+        listeners.add(listener);
     }
 
 

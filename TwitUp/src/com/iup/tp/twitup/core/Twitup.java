@@ -1,7 +1,6 @@
 package com.iup.tp.twitup.core;
 
 import java.io.File;
-import java.nio.file.attribute.UserPrincipal;
 import java.util.HashSet;
 import java.util.UUID;
 
@@ -10,19 +9,18 @@ import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
-import com.iup.tp.twitup.events.login.ILoginObserver;
-import com.iup.tp.twitup.ihm.TwitupLoginView;
-import com.iup.tp.twitup.ihm.TwitupMainView;
+import com.iup.tp.twitup.events.register.RegisterController;
+import com.iup.tp.twitup.events.twit.TwitListController;
+import com.iup.tp.twitup.ihm.*;
 
-import com.iup.tp.twitup.ihm.TwitupTwitView;
 import com.iup.tp.twitup.events.login.LoginController;
-import com.iup.tp.twitup.ihm.TwitupMock;
+
 /**
  * Classe principale l'application.
  * 
  * @author S.Lucas
  */
-public class Twitup implements ILoginObserver{
+public class Twitup implements ITwitUpObserver{
 	/**
 	 * Base de données.
 	 */
@@ -62,6 +60,8 @@ public class Twitup implements ILoginObserver{
 	protected String mUiClassName;
 
 	protected  LoginController loginController;
+	protected  RegisterController registerController;
+	protected  TwitListController twitListController;
 	private AppDatabaseObserver mConsole;
 
 	public static User userLogged;
@@ -88,7 +88,8 @@ public class Twitup implements ILoginObserver{
 		// Initialisation du répertoire d'échange
 		this.initDirectory();
 
-		this.initObserver();
+		loadLogin();
+
 	}
 
 	/**
@@ -103,7 +104,7 @@ public class Twitup implements ILoginObserver{
 	protected void initGui() {
 
 		this.mMainView = new TwitupMainView();
-		initLoginView();
+
 	}
 
 	/**
@@ -170,37 +171,66 @@ public class Twitup implements ILoginObserver{
 		mWatchableDirectory.addObserver(mEntityManager);
 	}
 
-	protected  void initLoginView(){
+
+	protected  void loadLogin(){
 		loginController = new LoginController(mDatabase);
+		if(registerController != null){
+			registerController.removeListener(this);
+		}
+
+		loginController.addListener(this);
+		mMainView.getContentPane().removeAll();
 		mMainView.getContentPane().add(loginController.loginView);
 		mMainView.repaint();
 		mMainView.revalidate();
 	}
 
-	protected  void initTwitView(){
-		TwitupTwitView twitView = new TwitupTwitView();
-		mMainView.getContentPane().add(twitView);
+
+
+	protected  void loadRegister(){
+		registerController = new RegisterController(mDatabase);
+		registerController.addListener(this);
+		mMainView.getContentPane().removeAll();
+		mMainView.getContentPane().add(registerController.registerView);
+		mMainView.repaint();
+		mMainView.revalidate();
+		// loginController.removeListener(this);
+	}
+
+	protected  void loadTwitList(){
+		twitListController = new TwitListController(mDatabase);
+		twitListController.addListener(this);
+		mMainView.getContentPane().removeAll();
+		mMainView.getContentPane().add(twitListController.twitListView);
 		mMainView.repaint();
 		mMainView.revalidate();
 	}
-
-
 
 	public void show() {
 		this.mMainView.setVisible(true);
 	}
 
 	@Override
-	public void notifyLogin(String u, String p) {}
+	public void notifyRegisterToLogin() {
+		System.out.println("Changement de page à effectué");
+		loadLogin();
+	}
+
 
 	@Override
-	public void notifyRegister() {
-
+	public void notifyLoginToRegister() {
+		System.out.println("Changement de page à effectué");
+		loadRegister();
 	}
 
 	@Override
-	public void notifyTwit() {
-		System.out.println("loading");
-		initTwitView();
+	public void notifyLoginToTwitList() {
+		System.out.println("Changement de page à effectué");
+		loadTwitList();
+	}
+
+	@Override
+	public void notifyRegisterCancel() {
+
 	}
 }
