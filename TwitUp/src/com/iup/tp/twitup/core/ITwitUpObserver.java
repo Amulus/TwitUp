@@ -7,5 +7,7 @@ public interface ITwitUpObserver {
     void notifyCancel();
     void notifySendTwit();
     void notifyLogOut();
+    void notifyCreateTwit();
 
+    void notifyCancelCreate();
 }

@@ -23,6 +23,7 @@ public class TwitupMainView extends JFrame{
     protected final JMenuItem aboutMen = new JMenuItem("?");
     protected final JMenuItem logout = new JMenuItem("Deconnecter");
     protected final JMenuItem quitItem = new JMenuItem("Quitter");
+    protected final JMenuItem sendTwit = new JMenuItem("Twiter");
 	protected final JFileChooser chooser = new JFileChooser();
 
 	protected final URL logo20 = getClass().getClassLoader().getResource("resources/images/logoIUP_20.jpg");
@@ -67,15 +68,24 @@ public class TwitupMainView extends JFrame{
 		menuBar.add(aboutMen);
 		fileMen.add(quitItem);
 		setJMenuBar(menuBar);
+		menuBar.add(sendTwit);
 		menuBar.add(logout);
 
+
+		sendTwit.setVisible(false);
 		logout.setVisible(false);
 
 		logout.addActionListener(e->doLogout());
 
+		sendTwit.addActionListener(e->goCreateTwit());
+
 		aboutMen.addActionListener(
 						e -> JOptionPane.showMessageDialog(TwitupMainView.this,"Hello, Welcome to Javatpoint.",null, getDefaultCloseOperation(), new ImageIcon(logo50)));
 		quitItem.addActionListener(e->this.close());
+	}
+
+	public void goCreateTwit(){
+		listeners.forEach(ITwitUpObserver::notifyCreateTwit);
 	}
 
 	public void doLogout(){
@@ -84,10 +94,12 @@ public class TwitupMainView extends JFrame{
 	}
 
 	public void onLogin(){
+		sendTwit.setVisible(true);
     	logout.setVisible(true);
 	}
 
 	public void onLogout(){
+		sendTwit.setVisible(false);
     	logout.setVisible(false);
 	}
 

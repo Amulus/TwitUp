@@ -11,6 +11,7 @@ import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.events.register.RegisterController;
+import com.iup.tp.twitup.events.twit.ITwitCreateController;
 import com.iup.tp.twitup.events.twit.TwitListController;
 import com.iup.tp.twitup.ihm.*;
 
@@ -65,6 +66,7 @@ public class Twitup implements ITwitUpObserver{
 	protected  LoginController loginController;
 	protected  RegisterController registerController;
 	protected  TwitListController twitListController;
+	protected ITwitCreateController createTwitController;
 	private AppDatabaseObserver mConsole;
 
 
@@ -189,9 +191,6 @@ public class Twitup implements ITwitUpObserver{
 
 	protected  void loadLogin(){
 		loginController = new LoginController(mDatabase);
-		if(registerController != null){
-			registerController.removeListener(this);
-		}
 
 		loginController.addListener(this);
 		mMainView.getContentPane().removeAll();
@@ -229,6 +228,15 @@ public class Twitup implements ITwitUpObserver{
 		mMainView.revalidate();
 	}
 
+	private void loadCreateTwit() {
+		createTwitController = new ITwitCreateController(mDatabase, userLogged);
+		createTwitController.addListener(this);
+		mMainView.getContentPane().removeAll();
+		mMainView.getContentPane().add(createTwitController.createTwitView);
+		mMainView.repaint();
+		mMainView.revalidate();
+	}
+
 	public void show() {
 		this.mMainView.setVisible(true);
 	}
@@ -258,6 +266,17 @@ public class Twitup implements ITwitUpObserver{
 		mMainView.onLogout();
 		loadLogin();
 	}
+
+	@Override
+	public void notifyCreateTwit() {
+		loadCreateTwit();
+	}
+
+	@Override
+	public void notifyCancelCreate() {
+		loadTwitList();
+	}
+
 
 	@Override
 	public void notifyLogin() {

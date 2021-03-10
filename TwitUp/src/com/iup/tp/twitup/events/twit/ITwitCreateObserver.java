@@ -4,4 +4,5 @@ public interface ITwitCreateObserver {
 
     public void notifySend(String text);
 
+    void notifyCancel();
 }
