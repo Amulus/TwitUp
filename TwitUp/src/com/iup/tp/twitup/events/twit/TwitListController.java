@@ -28,7 +28,7 @@ public class TwitListController implements ITwitListController{
 
     @Override
     public void notifyAddTwit() {
-
+        listeners.forEach(ITwitUpObserver::notifyCreateTwit);
     }
 
     @Override

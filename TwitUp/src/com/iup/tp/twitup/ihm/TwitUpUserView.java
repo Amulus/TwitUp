@@ -2,20 +2,25 @@ package com.iup.tp.twitup.ihm;
 
 import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
+import com.iup.tp.twitup.events.user.IUserListController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TwitUpUserView extends JPanel {
+    protected List<IUserListController> listeners;
     protected JLabel name;
     protected JLabel avatar;
-    protected JTextArea textArea;
     protected JLabel tag;
+    protected User user;
     protected final GridBagConstraints gbc = new GridBagConstraints();
     protected JButton followUserButton;
 
     public TwitUpUserView(User u) {
+        this.user= u;
+        listeners = new ArrayList<>();
         setLayout(new GridBagLayout());
         initComposant(u.getName(),u.getUserTag(), new ImageIcon(u.getAvatarPath()));
         addComposant();
@@ -33,6 +38,7 @@ public class TwitUpUserView extends JPanel {
     }
 
     private void doFollow() {
+        listeners.forEach((c)->c.notifyFollow(this.tag.getText()));
     }
 
     public void addComposant(){
@@ -58,5 +64,13 @@ public class TwitUpUserView extends JPanel {
             add(followUserButton,new GridBagConstraints(3, 2, 1, 0, 0, 0, GridBagConstraints.CENTER, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
 
     }
+    public void addListener(IUserListController listener) {
+        listeners.add(listener);
+    }
+
+    public void removeListener(IUserListController listener) {
+        listeners.add(listener);
+    }
+
 
 }

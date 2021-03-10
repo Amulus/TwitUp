@@ -4,4 +4,5 @@ import com.iup.tp.twitup.core.ITwitUpObserver;
 
 public interface IUserListController {
     public void notifyCancel();
+    void notifyFollow(String t);
 }

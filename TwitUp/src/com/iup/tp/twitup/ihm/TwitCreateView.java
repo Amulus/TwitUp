@@ -34,7 +34,6 @@ public class TwitCreateView extends JPanel {
         add(twitArea,new GridBagConstraints(0, 1, 3, 3, 1, 1, GridBagConstraints.WEST, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
         add(sendButton,new GridBagConstraints(0, 5, 1, 1, 0, 0, GridBagConstraints.WEST, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
         add(cancelButton,new GridBagConstraints(1, 5, 1, 1, 0, 0, GridBagConstraints.WEST, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
-
     }
 
     public void doCancel(){
