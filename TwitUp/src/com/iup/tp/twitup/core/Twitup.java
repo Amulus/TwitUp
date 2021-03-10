@@ -21,7 +21,7 @@ import javax.swing.*;
 
 /**
  * Classe principale l'application.
- * 
+ *
  * @author S.Lucas
  */
 public class Twitup implements ITwitUpObserver{
@@ -81,7 +81,7 @@ public class Twitup implements ITwitUpObserver{
 
 		// Initialisation de la base de données
 		this.initDatabase();
-		
+
 		this.initObserver();
 
 		if (this.mIsMockEnabled) {
@@ -133,7 +133,7 @@ public class Twitup implements ITwitUpObserver{
 	/**
 	 * Indique si le fichier donné est valide pour servire de répertoire
 	 * d'échange
-	 * 
+	 *
 	 * @param directory
 	 *            , Répertoire à tester.
 	 */
@@ -150,8 +150,8 @@ public class Twitup implements ITwitUpObserver{
 		TwitupMock mock = new TwitupMock(this.mDatabase, this.mEntityManager);
 		mock.showGUI();
 	}
-	
-	
+
+
 	/**
 	 * Initialisation de la base de données
 	 */
@@ -165,18 +165,18 @@ public class Twitup implements ITwitUpObserver{
 		mDatabase.addTwit(twit);
 		mDatabase.addTwit(twit2);
 	}
-	
+
 	/**
 	 * Initialisation de l'observer de la base de données
 	 */
-	
+
 	protected void initObserver() {
 			mConsole = new AppDatabaseObserver();
 			mDatabase.addObserver(mConsole);
 		}
 	/**
 	 * Initialisation du répertoire d'échange.
-	 * 
+	 *
 	 * @param directoryPath
 	 */
 	public void initDirectory(String directoryPath) {
@@ -195,15 +195,6 @@ public class Twitup implements ITwitUpObserver{
 		loginController.addListener(this);
 		mMainView.getContentPane().removeAll();
 		mMainView.getContentPane().add(loginController.loginView);
-		mMainView.repaint();
-		mMainView.revalidate();
-	}
-
-
-	protected  void loadTwit(){
-		TwitupTwitView twitView= new TwitupTwitView();
-		mMainView.getContentPane().removeAll();
-		mMainView.getContentPane().add(twitView);
 		mMainView.repaint();
 		mMainView.revalidate();
 	}
@@ -275,6 +266,11 @@ public class Twitup implements ITwitUpObserver{
 	@Override
 	public void notifyCancelCreate() {
 		loadTwitList();
+	}
+
+	@Override
+	public void notifyUsers() {
+
 	}
 
 

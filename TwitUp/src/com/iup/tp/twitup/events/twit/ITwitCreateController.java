@@ -22,6 +22,8 @@ public class ITwitCreateController implements  ITwitCreateObserver{
         this.mDatabase = database;
         createTwitView = new TwitCreateView();
         listeners = new ArrayList<>();
+        createTwitView.addListener(this);
+
     }
 
     @Override

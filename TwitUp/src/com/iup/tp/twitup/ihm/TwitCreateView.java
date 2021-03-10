@@ -5,6 +5,7 @@ import com.iup.tp.twitup.events.twit.ITwitCreateObserver;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TwitCreateView extends JPanel {
@@ -15,22 +16,25 @@ public class TwitCreateView extends JPanel {
     protected JButton cancelButton;
 
     public TwitCreateView(){
+        listeners = new ArrayList<>();
         initComponents();
         addComponents();
         setLayout(new GridBagLayout());
+
     }
     public void initComponents(){
         description = new JLabel("Raconter votre vie : ");
-        twitArea = new JTextArea(3, 16);
+        twitArea = new JTextArea("3, 16");
         sendButton = new JButton("Envoyer");
         cancelButton = new JButton("Cancel");
         sendButton.addActionListener(e -> doSend());
         cancelButton.addActionListener(e -> doCancel());
     }
     public void addComponents(){
-        add(description,new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
-        add(twitArea,new GridBagConstraints(0, 0, 3, 3, 0, 0, GridBagConstraints.WEST, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
-        add(sendButton,new GridBagConstraints(4, 0, 1, 1, 0, 0, GridBagConstraints.WEST, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
+        add(description,new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
+        add(twitArea,new GridBagConstraints(0, 1, 3, 3, 1, 1, GridBagConstraints.WEST, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
+        add(sendButton,new GridBagConstraints(0, 5, 1, 1, 0, 0, GridBagConstraints.WEST, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
+        add(cancelButton,new GridBagConstraints(1, 5, 1, 1, 0, 0, GridBagConstraints.WEST, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
 
     }
 
