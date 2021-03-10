@@ -13,20 +13,7 @@ public class TwitupTwitView extends JPanel{
     protected JTextArea textArea;
     protected JLabel tag;
     protected final GridBagConstraints gbc = new GridBagConstraints();
-    protected JButton createTwtit;
 
-    public TwitupTwitView(String name, String tag, String text, ImageIcon avatar) {
-        setLayout(new GridBagLayout());
-        initComposant(name ,tag, text, avatar);
-
-        addComposant();
-    }
-
-    public TwitupTwitView() {
-        setLayout(new GridBagLayout());
-        initComposant("patrick" ,"@patpat", "sdkljfdsklfjdsklfjdkslnf,ze;nbjhzrbjk", new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("resources/images/logoIUP_20.jpg"))));
-        addComposant();
-    }
 
     public TwitupTwitView(Twit t) {
         setLayout(new GridBagLayout());
