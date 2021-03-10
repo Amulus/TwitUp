@@ -11,7 +11,7 @@ public class TwitupLoginView extends JPanel {
     protected final JLabel userLabel = new JLabel("User");
     protected final JLabel pwdLabel = new JLabel("Password");
     protected final JTextField userField= new JTextField(10);
-    protected final JTextField pwdField= new JTextField(10);
+    protected final JPasswordField pwdField= new JPasswordField(10);
     protected final JButton loginButton= new JButton("Valider");
     protected final JButton registerButton= new JButton("S'enregistrer");
     protected final List<ILoginObserver> listeners;

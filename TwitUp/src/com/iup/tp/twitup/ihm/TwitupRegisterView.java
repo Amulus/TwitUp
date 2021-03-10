@@ -15,7 +15,7 @@ public class TwitupRegisterView extends JPanel{
     protected JLabel pwdLabel;
     protected JLabel tagLabel;
     protected JTextField userField;
-    protected JTextField pwdField;
+    protected JPasswordField pwdField;
     protected JTextField tagField;
     protected JButton registerButton;
     protected JButton cancelButton;
@@ -32,7 +32,7 @@ public class TwitupRegisterView extends JPanel{
         pwdLabel = new JLabel("Password");
         tagLabel = new JLabel("Tag");
         userField= new JTextField(10);
-        pwdField= new JTextField(10);
+        pwdField= new JPasswordField(10);
         tagField= new JTextField(10);
         registerButton = new JButton("Register");
         cancelButton = new JButton("Cancel");
