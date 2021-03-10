@@ -51,7 +51,7 @@ public class TwitupRegisterView extends JPanel{
         add(registerButton,new GridBagConstraints(0, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
         add(cancelButton,new GridBagConstraints(1, 3, 1, 1, 0, 0, GridBagConstraints.CENTER, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
 
-        registerButton.addActionListener(e -> doRegister(userField.getText(),pwdField.getText(), tagField.getText()));
+        registerButton.addActionListener(e -> doRegister(userField.getText(), tagField.getText(), pwdField.getText()));
         cancelButton.addActionListener(e -> doCancel());
     }
 
