@@ -17,14 +17,13 @@ public class TwitCreateView extends JPanel {
 
     public TwitCreateView(){
         listeners = new ArrayList<>();
+        setLayout(new GridBagLayout());
         initComponents();
         addComponents();
-        setLayout(new GridBagLayout());
-
     }
     public void initComponents(){
         description = new JLabel("Raconter votre vie : ");
-        twitArea = new JTextArea("3, 16");
+        twitArea = new JTextArea(5, 20);
         sendButton = new JButton("Envoyer");
         cancelButton = new JButton("Cancel");
         sendButton.addActionListener(e -> doSend());
