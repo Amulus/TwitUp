@@ -10,4 +10,6 @@ public interface ITwitUpObserver {
     void notifyCreateTwit();
     void notifyCancelCreate();
     void notifyUsers();
+
+    void notifyProfile();
 }

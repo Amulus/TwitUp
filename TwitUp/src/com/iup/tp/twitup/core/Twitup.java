@@ -13,6 +13,7 @@ import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.events.register.RegisterController;
 import com.iup.tp.twitup.events.twit.ITwitCreateController;
 import com.iup.tp.twitup.events.twit.TwitListController;
+import com.iup.tp.twitup.events.user.ProfileController;
 import com.iup.tp.twitup.events.user.UserListController;
 import com.iup.tp.twitup.ihm.*;
 
@@ -69,6 +70,7 @@ public class Twitup implements ITwitUpObserver{
 	protected  TwitListController twitListController;
 	protected ITwitCreateController createTwitController;
 	protected UserListController userListController;
+	protected ProfileController profileController;
 	private AppDatabaseObserver mConsole;
 
 
@@ -284,6 +286,20 @@ public class Twitup implements ITwitUpObserver{
 	@Override
 	public void notifyUsers() {
 		loadUsersList();
+	}
+
+	@Override
+	public void notifyProfile() {
+		loadProfile();
+	}
+
+	private void loadProfile() {
+		profileController = new ProfileController(userLogged);
+		profileController.addListener(this);
+		mMainView.getContentPane().removeAll();
+		mMainView.getContentPane().add(profileController.twitUpProfileView);
+		mMainView.repaint();
+		mMainView.revalidate();
 	}
 
 
