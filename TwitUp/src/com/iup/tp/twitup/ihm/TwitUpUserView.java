@@ -28,7 +28,7 @@ public class TwitUpUserView extends JPanel {
             this.avatar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             this.tag = new JLabel(userTag);
             this.tag.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            this.followUserButton = new JButton("f");
+            this.followUserButton = new JButton("Follow the user");
             followUserButton.addActionListener(e -> doFollow());
     }
 
@@ -52,12 +52,11 @@ public class TwitUpUserView extends JPanel {
             gbc.gridy = 1;
             add(tag,new GridBagConstraints(2, 2, 1, 0, 0, 0, GridBagConstraints.CENTER, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
 
-            //text
+            //button
+            gbc.gridx = 2;
+            gbc.gridy = 1;
+            add(followUserButton,new GridBagConstraints(3, 2, 1, 0, 0, 0, GridBagConstraints.CENTER, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
 
-            gbc.gridwidth = 10;
-            gbc.gridx = 0;
-            gbc.gridy = 5;
-            add(textArea,new GridBagConstraints(0, 4, 1, 1, 0, 0, GridBagConstraints.CENTER, 1 , new java.awt.Insets(0,0,0,0), 0, 0));
-        }
+    }
 
 }

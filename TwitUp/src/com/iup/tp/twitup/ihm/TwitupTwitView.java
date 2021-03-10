@@ -13,7 +13,6 @@ public class TwitupTwitView extends JPanel{
     protected JTextArea textArea;
     protected JLabel tag;
     protected final GridBagConstraints gbc = new GridBagConstraints();
-    protected JButton createTwtit;
 
 
     public TwitupTwitView(Twit t) {

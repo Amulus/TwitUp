@@ -15,6 +15,7 @@ public class TwitListController implements ITwitListController{
         mDatabase = database;
         twitListView = new TwitListView(mDatabase.getTwits());
         listeners = new ArrayList<>();
+        twitListView.addListener(this);
     }
 
     public void addListener(ITwitUpObserver listener) {
@@ -28,5 +29,10 @@ public class TwitListController implements ITwitListController{
     @Override
     public void notifyAddTwit() {
 
+    }
+
+    @Override
+    public void notifyViewUsers() {
+        listeners.forEach((c) -> c.notifyUsers());
     }
 }

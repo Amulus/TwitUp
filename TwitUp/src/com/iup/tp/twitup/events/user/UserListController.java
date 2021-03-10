@@ -14,15 +14,24 @@ public class UserListController implements IUserListController{
     protected User userLogged;
     protected IDatabase mDatabase;
     protected List<ITwitUpObserver> listeners;
-    protected TwitUpUserListView twitUpUserListView;
+    public TwitUpUserListView twitUpUserListView;
     public UserListController(IDatabase database){
         mDatabase = database;
         twitUpUserListView = new TwitUpUserListView(mDatabase.getUsers());
         listeners = new ArrayList<>();
+
     }
 
     @Override
     public void notifyUserList() {
-
+        listeners.forEach((c)-> c.notifyUsers());
     }
+    public void addListener(ITwitUpObserver listener) {
+        listeners.add(listener);
+    }
+
+    public void removeListener(ITwitUpObserver listener) {
+        listeners.add(listener);
+    }
+
 }
