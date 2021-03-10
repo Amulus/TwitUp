@@ -53,7 +53,7 @@ public class RegisterController implements IRegisterObserver{
     }
 
     public void doLogin(){
-        listeners.forEach(ITwitUpObserver::notifyRegister);
+        listeners.forEach(ITwitUpObserver::notifyLogin);
     }
 
     public void addListener(ITwitUpObserver listener) {

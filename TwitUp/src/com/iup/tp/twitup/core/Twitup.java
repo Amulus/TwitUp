@@ -114,6 +114,7 @@ public class Twitup implements ITwitUpObserver{
 	protected void initGui() {
 
 		this.mMainView = new TwitupMainView();
+		mMainView.addListener(this);
 
 	}
 
@@ -235,14 +236,14 @@ public class Twitup implements ITwitUpObserver{
 	@Override
 	public void notifyRegister() {
 		System.out.println("Changement de page à effectué");
-		loadLogin();
+		loadRegister();
 	}
 
 
 	@Override
 	public void notifyCancel() {
 		System.out.println("Changement de page à effectué");
-		loadRegister();
+		loadLogin();
 	}
 
 	@Override

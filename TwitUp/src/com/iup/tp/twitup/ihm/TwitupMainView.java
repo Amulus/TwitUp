@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.ihm;
 
+import com.iup.tp.twitup.core.ITwitUpObserver;
 import com.iup.tp.twitup.core.Twitup;
 import com.iup.tp.twitup.datamodel.User;
 
@@ -7,17 +8,20 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe de la vue principale de l'application.
  */
 public class TwitupMainView extends JFrame{
 
+	protected final List<ITwitUpObserver> listeners;
 	protected  User user;
     protected final JMenuBar menuBar = new JMenuBar();
     protected final JMenu fileMen = new JMenu("Fichier");
-    protected final JMenu aboutMen = new JMenu("?");
-    protected final JMenu logout = new JMenu("Deconnecter");
+    protected final JMenuItem aboutMen = new JMenuItem("?");
+    protected final JMenuItem logout = new JMenuItem("Deconnecter");
     protected final JMenuItem quitItem = new JMenuItem("Quitter");
 	protected final JFileChooser chooser = new JFileChooser();
 
@@ -30,6 +34,7 @@ public class TwitupMainView extends JFrame{
     public TwitupMainView(){
     	initFrame();
        	createMenu();
+		listeners = new ArrayList<>();
 	}
 
 	public void initFrame(){
@@ -66,18 +71,32 @@ public class TwitupMainView extends JFrame{
 
 		logout.setVisible(false);
 
+		logout.addActionListener(e->doLogout());
 
 		aboutMen.addActionListener(
 						e -> JOptionPane.showMessageDialog(TwitupMainView.this,"Hello, Welcome to Javatpoint.",null, getDefaultCloseOperation(), new ImageIcon(logo50)));
 		quitItem.addActionListener(e->this.close());
 	}
 
+	public void doLogout(){
+    	System.out.println("Do Logout");
+		listeners.forEach(ITwitUpObserver::notifyLogOut);
+	}
+
 	public void onLogin(){
     	logout.setVisible(true);
 	}
-	
+
 	public void onLogout(){
     	logout.setVisible(false);
+	}
+
+	public void addListener(ITwitUpObserver listener) {
+		listeners.add(listener);
+	}
+
+	public void removeListener(ITwitUpObserver listener) {
+		listeners.add(listener);
 	}
 
 }
