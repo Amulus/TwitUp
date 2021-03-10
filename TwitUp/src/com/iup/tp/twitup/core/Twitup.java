@@ -226,7 +226,7 @@ public class Twitup implements ITwitUpObserver{
 		userListController = new UserListController(mDatabase);
 		userListController.addListener(this);
 		mMainView.getContentPane().removeAll();
-		mMainView.getContentPane().add(twitListController.twitListView);
+		mMainView.getContentPane().add(userListController.twitUpUserListView);
 		mMainView.repaint();
 		mMainView.revalidate();
 

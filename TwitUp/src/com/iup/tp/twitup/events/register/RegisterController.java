@@ -27,7 +27,7 @@ public class RegisterController implements IRegisterObserver{
 
     protected User userNotExists(String username, String password,String tag) {
         for (User user : mDatabase.getUsers()) {
-            if((username == null) && (password == null) && (tag == null)) return null;
+            if((username == null || username.trim().isEmpty()) && ((password == null) || password.trim().isEmpty()) && (tag == null || tag.trim().isEmpty())) return null;
             if (user.getName().equals(username) && user.getUserPassword().equals(password)) {
                 return null;
             }
