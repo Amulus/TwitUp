@@ -49,11 +49,11 @@ public class RegisterController implements IRegisterObserver{
 
     @Override
     public void notifyCancel() {
-        listeners.forEach(ITwitUpObserver::notifyLoginToRegister);
+        listeners.forEach(ITwitUpObserver::notifyCancel);
     }
 
     public void doLogin(){
-        listeners.forEach(ITwitUpObserver::notifyRegisterToLogin);
+        listeners.forEach(ITwitUpObserver::notifyLogin);
     }
 
     public void addListener(ITwitUpObserver listener) {

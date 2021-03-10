@@ -47,11 +47,11 @@ public class LoginController implements ILoginObserver {
 
     @Override
     public void notifyRegister() {
-        listeners.forEach(ITwitUpObserver::notifyLoginToRegister);
+        listeners.forEach(ITwitUpObserver::notifyRegister);
     }
 
     public void doTwit() {
-        listeners.forEach(ITwitUpObserver::notifyLoginToTwitList);
+        listeners.forEach(ITwitUpObserver::notifyLogin);
     }
 
 

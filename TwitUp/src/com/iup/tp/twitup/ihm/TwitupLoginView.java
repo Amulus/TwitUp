@@ -48,9 +48,9 @@ public class TwitupLoginView extends JPanel {
         add(loginButton,gbc);
 
         loginButton.addActionListener(e -> doLogin(userField.getText(),pwdField.getText()));
-        registerButton.addActionListener(e -> doRegsiter());
+        registerButton.addActionListener(e -> doRegister());
     }
-    protected void doRegsiter() {
+    protected void doRegister() {
         listeners.forEach(ILoginObserver::notifyRegister);
     }
 
