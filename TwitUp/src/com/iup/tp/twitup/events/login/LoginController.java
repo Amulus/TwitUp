@@ -7,14 +7,11 @@ import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.core.Twitup;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.TwitupLoginView;
-import com.iup.tp.twitup.ihm.TwitupTwitView;
-
-import javax.swing.*;
 
 public class LoginController implements ILoginObserver {
-    public Database mDatabase;
-    public TwitupLoginView loginView;
-    public List<ITwitUpObserver> listeners;
+    public final Database mDatabase;
+    public final TwitupLoginView loginView;
+    public final List<ITwitUpObserver> listeners;
 
     public LoginController(Database database) {
         mDatabase = database;

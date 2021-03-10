@@ -23,11 +23,10 @@ public class JaxbWriter {
 	 *            , TwitXml à générer.
 	 * @param destFileName
 	 *            , Fichier de destination.
-	 * @return un booléen indiquant si la génération s'est déroulée avec succès.
-	 */
-	public static boolean writeTwitFile(TwitXml twit, String destFileName) {
-		return writeFile(TwitXml.class, twit, destFileName);
-	}
+     */
+	public static void writeTwitFile(TwitXml twit, String destFileName) {
+        writeFile(TwitXml.class, twit, destFileName);
+    }
 
 	/**
 	 * Génération d'un fichier pour un utilisateur ({@link UserXml}).
@@ -36,17 +35,14 @@ public class JaxbWriter {
 	 *            , UserXml à générer.
 	 * @param destFileName
 	 *            , Fichier de destination.
-	 * @return un booléen indiquant si la génération s'est déroulée avec succès.
-	 */
-	public static boolean writeUserFile(UserXml user, String destFileName) {
-		return writeFile(UserXml.class, user, destFileName);
-	}
+     */
+	public static void writeUserFile(UserXml user, String destFileName) {
+        writeFile(UserXml.class, user, destFileName);
+    }
 
 	/**
 	 * Génération d'un fichier XML correspondant à un objet.
 	 * 
-	 * @param jaxbContext
-	 *            , Contexte JAXB pour le marshalling
 	 * @param objectToMarshal
 	 *            , Objet à convertir en XML.
 	 * @param destFileName

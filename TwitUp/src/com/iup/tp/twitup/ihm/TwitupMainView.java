@@ -1,29 +1,24 @@
 package com.iup.tp.twitup.ihm;
 
-import com.iup.tp.twitup.core.Twitup;
-
 import javax.swing.*;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.net.URL;
 
 /**
  * Classe de la vue principale de l'application.
  */
 public class TwitupMainView extends JFrame{
-    protected JMenuBar menuBar = new JMenuBar();
-    protected  JMenu fileMen = new JMenu("Fichier");
-    protected  JMenu aboutMen = new JMenu("?");
-    protected JMenuItem quitItem = new JMenuItem("Quitter");
-	protected	JFileChooser chooser = new JFileChooser();
+    protected final JMenuBar menuBar = new JMenuBar();
+    protected final JMenu fileMen = new JMenu("Fichier");
+    protected final JMenu aboutMen = new JMenu("?");
+    protected final JMenuItem quitItem = new JMenuItem("Quitter");
+	protected final JFileChooser chooser = new JFileChooser();
 
-	protected URL logo20 = getClass().getClassLoader().getResource("resources/images/logoIUP_20.jpg");
-    protected URL logo50 = getClass().getClassLoader().getResource("resources/images/logoIUP_50.jpg");
+	protected final URL logo20 = getClass().getClassLoader().getResource("resources/images/logoIUP_20.jpg");
+    protected final URL logo50 = getClass().getClassLoader().getResource("resources/images/logoIUP_50.jpg");
     protected URL editIcon = getClass().getClassLoader().getResource("resources/images/editIcon_20.png");
-    protected URL exitIcon = getClass().getClassLoader().getResource("resources/images/exitIcon_20.png");
+    protected final URL exitIcon = getClass().getClassLoader().getResource("resources/images/exitIcon_20.png");
 
 
     public TwitupMainView(){

@@ -5,13 +5,13 @@
 	
     <complexType name="TwitXml">
     	<sequence>
-            <element name="ID" type="string"></element>
-            <element name="EmissionDate" type="long"></element>
-            <element name="Twiter" type="string"></element>
-            <element name="Text" type="string"></element>
+            <element name="ID" type="string"/>
+            <element name="EmissionDate" type="long"/>
+            <element name="Twiter" type="string"/>
+            <element name="Text" type="string"/>
     	</sequence>
     </complexType>
-    
-    <element name="Twit" type="tns:TwitXml"></element>
+
+    <element name="Twit" type="tns:TwitXml"/>
     
 </schema>

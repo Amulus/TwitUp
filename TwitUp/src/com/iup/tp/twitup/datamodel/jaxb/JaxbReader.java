@@ -39,8 +39,7 @@ public class JaxbReader {
 
 	/**
 	 * Lecture du fichier XML pour un {@link UserXml}
-	 * 
-	 * @param twitFileName
+	 *
 	 */
 	public static UserXml readUser(String userFileName) {
 		UserXml user = null;

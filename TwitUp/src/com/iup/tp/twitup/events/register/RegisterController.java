@@ -3,7 +3,6 @@ package com.iup.tp.twitup.events.register;
 import com.iup.tp.twitup.core.Twitup;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
-import com.iup.tp.twitup.ihm.TwitupLoginView;
 import com.iup.tp.twitup.ihm.TwitupRegisterView;
 import com.iup.tp.twitup.core.ITwitUpObserver;
 
@@ -14,10 +13,10 @@ import java.util.UUID;
 
 
 public class RegisterController implements IRegisterObserver{
-    public IDatabase mDatabase;
-    public TwitupRegisterView registerView;
+    public final IDatabase mDatabase;
+    public final TwitupRegisterView registerView;
     protected Twitup mainController;
-    protected List<ITwitUpObserver> listeners;
+    protected final List<ITwitUpObserver> listeners;
     public RegisterController (IDatabase database){
         registerView = new TwitupRegisterView();
         registerView.addListener(this);
@@ -32,7 +31,7 @@ public class RegisterController implements IRegisterObserver{
                 return null;
             }
         }
-        User user = new User(UUID.randomUUID(), tag, password, username, new HashSet<String>(), "");
+        User user = new User(UUID.randomUUID(), tag, password, username, new HashSet<>(), "");
         mDatabase.addUser(user);
         return user;
     }

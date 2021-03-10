@@ -30,9 +30,9 @@ public class Database implements IDatabase {
 	 * Constructeur.
 	 */
 	public Database() {
-		mUsers = new HashSet<User>();
-		mTwits = new HashSet<Twit>();
-		mObservers = new HashSet<IDatabaseObserver>();
+		mUsers = new HashSet<>();
+		mTwits = new HashSet<>();
+		mObservers = new HashSet<>();
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class Database implements IDatabase {
 	@Override
 	public Set<User> getUsers() {
 		// Clonage pour éviter les modifications extérieures.
-		return new HashSet<User>(this.mUsers);
+		return new HashSet<>(this.mUsers);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Database implements IDatabase {
 	@Override
 	public Set<Twit> getTwits() {
 		// Clonage pour éviter les modifications extérieures.
-		return new HashSet<Twit>(this.mTwits);
+		return new HashSet<>(this.mTwits);
 	}
 
 	/**
@@ -144,8 +144,7 @@ public class Database implements IDatabase {
 	@Override
 	public void clearTwits() {
 		// Parcours de la liste clonnée des twits
-		Set<Twit> clonedTwits = this.mTwits;
-		for (Twit twit : clonedTwits) {
+		for (Twit twit : this.mTwits) {
 			// Suppression de chacun des twits
 			this.removeTwit(twit);
 		}
@@ -157,8 +156,7 @@ public class Database implements IDatabase {
 	@Override
 	public void clearUsers() {
 		// Parcours de la liste clonnée des utilisateurs
-		Set<User> clonedUsers = this.mUsers;
-		for (User user : clonedUsers) {
+		for (User user : this.mUsers) {
 			// Suppression de chacun des utlisateurs
 			this.removeUser(user);
 		}
@@ -178,7 +176,7 @@ public class Database implements IDatabase {
 	 */
 	@Override
 	public Set<Twit> getTwitsWithTag(String tag) {
-		Set<Twit> taggedTwits = new HashSet<Twit>();
+		Set<Twit> taggedTwits = new HashSet<>();
 
 		// Parcours de tous les twits de la base
 		for (Twit twit : this.getTwits()) {
@@ -196,7 +194,7 @@ public class Database implements IDatabase {
 	 */
 	@Override
 	public Set<Twit> getTwitsWithUserTag(String userTag) {
-		Set<Twit> taggedTwits = new HashSet<Twit>();
+		Set<Twit> taggedTwits = new HashSet<>();
 
 		// Parcours de tous les twits de la base
 		for (Twit twit : this.getTwits()) {
@@ -214,7 +212,7 @@ public class Database implements IDatabase {
 	 */
 	@Override
 	public Set<Twit> getUserTwits(User user) {
-		Set<Twit> userTwits = new HashSet<Twit>();
+		Set<Twit> userTwits = new HashSet<>();
 
 		// Parcours de tous les twits de la base
 		for (Twit twit : this.getTwits()) {
@@ -232,7 +230,7 @@ public class Database implements IDatabase {
 	 */
 	@Override
 	public Set<User> getFollowers(User user) {
-		Set<User> followers = new HashSet<User>();
+		Set<User> followers = new HashSet<>();
 
 		// Parcours de tous les utilisateurs de la base
 		for (User otherUser : this.getUsers()) {
@@ -246,7 +244,7 @@ public class Database implements IDatabase {
 	}
 
 	public Set<User> getFollowed(User user) {
-		Set<User> followers = new HashSet<User>();
+		Set<User> followers = new HashSet<>();
 
 		// Parcours de tous les utilisateurs de la base
 		for (User otherUser : this.getUsers()) {
@@ -272,7 +270,7 @@ public class Database implements IDatabase {
 	 */
 	@Override
 	public User getUnknowUser() {
-		return new User(Constants.UNKNONWN_USER_UUID, "<Inconnu>", "--", "<Inconnu>", new HashSet<String>(), "");
+		return new User(Constants.UNKNONWN_USER_UUID, "<Inconnu>", "--", "<Inconnu>", new HashSet<>(), "");
 	}
 
 	/**
@@ -290,7 +288,7 @@ public class Database implements IDatabase {
 		// Notification pour le nouvel observateur
 		for (User user : this.getUsers()) {
 			// Pas de notification pour l'utilisateur inconnu
-			if (user.getUuid().equals(Constants.UNKNONWN_USER_UUID) == false) {
+			if (!user.getUuid().equals(Constants.UNKNONWN_USER_UUID)) {
 				observer.notifyUserAdded(user);
 			}
 		}
@@ -308,6 +306,6 @@ public class Database implements IDatabase {
 	 * Retourne une liste clonées des observateurs de modifications.
 	 */
 	protected Set<IDatabaseObserver> getObservers() {
-		return new HashSet<IDatabaseObserver>(this.mObservers);
+		return new HashSet<>(this.mObservers);
 	}
 }

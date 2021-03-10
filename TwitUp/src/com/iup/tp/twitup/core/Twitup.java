@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.iup.tp.databaseobserver.AppDatabaseObserver;
 import com.iup.tp.twitup.datamodel.Database;
+import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
@@ -14,6 +15,8 @@ import com.iup.tp.twitup.events.twit.TwitListController;
 import com.iup.tp.twitup.ihm.*;
 
 import com.iup.tp.twitup.events.login.LoginController;
+
+import javax.swing.*;
 
 /**
  * Classe principale l'application.
@@ -96,6 +99,11 @@ public class Twitup implements ITwitUpObserver{
 	 * Initialisation du look and feel de l'application.
 	 */
 	protected void initLookAndFeel() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getLookAndFeel());
+		} catch( Exception ex ) {
+			System.err.println( "Failed to initialize LaF" );
+		}
 	}
 
 	/**
@@ -146,7 +154,11 @@ public class Twitup implements ITwitUpObserver{
 		mDatabase = new Database();
 		mEntityManager = new EntityManager(mDatabase);
 		User ere= new User(UUID.randomUUID(), "test", "--", "test", new HashSet<String>(), "");
+		Twit twit= new Twit(ere, "Le signe des 5");
+		Twit twit2= new Twit(ere, "La belle vie #5G");
 		mDatabase.addUser(ere);
+		mDatabase.addTwit(twit);
+		mDatabase.addTwit(twit2);
 	}
 	
 	/**
@@ -185,6 +197,14 @@ public class Twitup implements ITwitUpObserver{
 		mMainView.revalidate();
 	}
 
+
+	protected  void loadTwit(){
+		TwitupTwitView twitView= new TwitupTwitView();
+		mMainView.getContentPane().removeAll();
+		mMainView.getContentPane().add(twitView);
+		mMainView.repaint();
+		mMainView.revalidate();
+	}
 
 
 	protected  void loadRegister(){
@@ -227,10 +247,5 @@ public class Twitup implements ITwitUpObserver{
 	public void notifyLoginToTwitList() {
 		System.out.println("Changement de page à effectué");
 		loadTwitList();
-	}
-
-	@Override
-	public void notifyRegisterCancel() {
-
 	}
 }

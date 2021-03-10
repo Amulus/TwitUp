@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -31,12 +29,12 @@ public class TwitupMock {
 	/**
 	 * Base de donénes de l'application.
 	 */
-	protected IDatabase mDatabase;
+	protected final IDatabase mDatabase;
 
 	/**
 	 * Gestionnaire de bdd et de fichier.
 	 */
-	protected EntityManager mEntityManager;
+	protected final EntityManager mEntityManager;
 
 	/**
 	 * Constructeur.
@@ -59,20 +57,17 @@ public class TwitupMock {
 		}
 
 		// Affichage dans l'EDT
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				// Custom de l'affichage
-				JFrame frame = TwitupMock.this.mFrame;
-				Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-				frame.setLocation((screenSize.width - frame.getWidth()) / 6,
-						(screenSize.height - frame.getHeight()) / 4);
+		SwingUtilities.invokeLater(() -> {
+			// Custom de l'affichage
+			JFrame frame = TwitupMock.this.mFrame;
+			Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+			frame.setLocation((screenSize.width - frame.getWidth()) / 6,
+					(screenSize.height - frame.getHeight()) / 4);
 
-				// Affichage
-				TwitupMock.this.mFrame.setVisible(true);
+			// Affichage
+			TwitupMock.this.mFrame.setVisible(true);
 
-				TwitupMock.this.mFrame.pack();
-			}
+			TwitupMock.this.mFrame.pack();
 		});
 	}
 
@@ -91,23 +86,11 @@ public class TwitupMock {
 
 		Button addUserButton = new Button("Add User");
 		addUserButton.setPreferredSize(new Dimension(100, 50));
-		addUserButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				TwitupMock.this.addUserInDatabase();
-			}
-		});
+		addUserButton.addActionListener(arg0 -> TwitupMock.this.addUserInDatabase());
 
 		Button addTwitButton = new Button("Add Twit");
 		addTwitButton.setPreferredSize(new Dimension(100, 50));
-		addTwitButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				TwitupMock.this.addTwitInDatabase();
-			}
-		});
+		addTwitButton.addActionListener(arg0 -> TwitupMock.this.addTwitInDatabase());
 
 		//
 		// Gestion des fichiers
@@ -116,23 +99,11 @@ public class TwitupMock {
 
 		Button sendUserButton = new Button("Send User");
 		sendUserButton.setPreferredSize(new Dimension(100, 50));
-		sendUserButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				TwitupMock.this.sendUser();
-			}
-		});
+		sendUserButton.addActionListener(arg0 -> TwitupMock.this.sendUser());
 
 		Button sendTwitButton = new Button("Send Twit");
 		sendTwitButton.setPreferredSize(new Dimension(100, 50));
-		sendTwitButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				TwitupMock.this.sendTwit();
-			}
-		});
+		sendTwitButton.addActionListener(arg0 -> TwitupMock.this.sendTwit());
 
 		//
 		// Ajout des composants à la fenêtre
@@ -179,9 +150,8 @@ public class TwitupMock {
 	protected User generateUser() {
 		int randomInt = new Random().nextInt(99999);
 		String userName = "MockUser" + randomInt;
-		User newUser = new User(UUID.randomUUID(), userName, "--", userName, new HashSet<String>(), "");
 
-		return newUser;
+		return new User(UUID.randomUUID(), userName, "--", userName, new HashSet<>(), "");
 	}
 
 	/**
@@ -218,11 +188,10 @@ public class TwitupMock {
 
 		// Récupération d'un utilisateur au hazard
 		int userIndex = new Random().nextInt(this.mDatabase.getUsers().size());
-		User randomUser = new ArrayList<User>(this.mDatabase.getUsers()).get(Math.max(0, userIndex - 1));
+		User randomUser = new ArrayList<>(this.mDatabase.getUsers()).get(Math.max(0, userIndex - 1));
 
 		// Création d'un twit fictif
-		Twit newTwit = new Twit(randomUser, "Twit fictif!! #Mock #test ;)");
 
-		return newTwit;
+		return new Twit(randomUser, "Twit fictif!! #Mock #test ;)");
 	}
 }

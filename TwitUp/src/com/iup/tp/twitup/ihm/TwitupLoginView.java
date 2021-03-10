@@ -2,25 +2,19 @@ package com.iup.tp.twitup.ihm;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.iup.tp.twitup.core.Twitup;
-import com.iup.tp.twitup.datamodel.Database;
-import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.login.ILoginObserver;
 
 public class TwitupLoginView extends JPanel {
-    protected JLabel userLabel = new JLabel("User");
-    protected JLabel pwdLabel = new JLabel("Password");
-    protected JTextField userField= new JTextField(10);
-    protected JTextField pwdField= new JTextField(10);
-    protected JButton loginButton= new JButton("Valider");
-    protected JButton registerButton= new JButton("S'enregistrer");
-    protected List<ILoginObserver> listeners;
+    protected final JLabel userLabel = new JLabel("User");
+    protected final JLabel pwdLabel = new JLabel("Password");
+    protected final JTextField userField= new JTextField(10);
+    protected final JTextField pwdField= new JTextField(10);
+    protected final JButton loginButton= new JButton("Valider");
+    protected final JButton registerButton= new JButton("S'enregistrer");
+    protected final List<ILoginObserver> listeners;
     public TwitupLoginView(){
         listeners = new ArrayList<>();
         setLayout(new GridBagLayout());

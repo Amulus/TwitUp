@@ -1,6 +1,5 @@
 package com.iup.tp.twitup.ihm;
 
-import com.iup.tp.twitup.events.login.ILoginObserver;
 import com.iup.tp.twitup.events.register.IRegisterObserver;
 
 import javax.swing.*;
@@ -10,7 +9,7 @@ import java.util.List;
 
 public class TwitupRegisterView extends JPanel{
 
-    protected List<IRegisterObserver> listeners;
+    protected final List<IRegisterObserver> listeners;
 
     protected JLabel userLabel;
     protected JLabel pwdLabel;

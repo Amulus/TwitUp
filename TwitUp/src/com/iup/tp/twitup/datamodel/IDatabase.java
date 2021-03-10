@@ -134,6 +134,6 @@ public interface IDatabase {
 	/**
 	 * Retourne l'utilisateur inconnu du système.
 	 */
-	public User getUnknowUser();
+    User getUnknowUser();
 
 }

@@ -115,7 +115,7 @@ public class User {
 	 */
 	public Set<String> getFollows() {
 		// Clonage pour éviter les modifications exterieures
-		return new HashSet<String>(this.mFollows);
+		return new HashSet<>(this.mFollows);
 	}
 
 	/**
@@ -161,19 +161,16 @@ public class User {
 		return this.getFollows().contains(userToCheck.getUserTag());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-//	-> A activer... pourquoi ?
-//	public int hashCode() {
-//		int hashCode = 0;
-//
-//		if (this.mUuid != null) {
-//			hashCode = this.mUuid.hashCode();
-//		}
-//
-//		return hashCode;
-//	}
+	//	-> A activer... pourquoi ?
+	public int hashCode() {
+		int hashCode = 0;
+
+		if (this.mUuid != null) {
+			hashCode = this.mUuid.hashCode();
+		}
+
+		return hashCode;
+	}
 	
 	/**
 	 * @{inheritDoc
@@ -197,18 +194,16 @@ public class User {
 	 */
 	@Override
 	public String toString() {
-		StringBuffer sb = new StringBuffer();
 
-		sb.append("[");
-		sb.append(this.getClass().getName());
-		sb.append("] : ");
-		sb.append(this.getUuid());
-		sb.append(" {@");
-		sb.append(this.getUserTag());
-		sb.append(" / ");
-		sb.append(this.getName());
-		sb.append("}");
-
-		return sb.toString();
+		String sb = "[" +
+				this.getClass().getName() +
+				"] : " +
+				this.getUuid() +
+				" {@" +
+				this.getUserTag() +
+				" / " +
+				this.getName() +
+				"}";
+		return sb;
 	}
 }
