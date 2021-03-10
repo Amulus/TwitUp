@@ -186,26 +186,12 @@ public class Twitup implements ITwitUpObserver{
 
 	protected  void loadLogin(){
 		loginController = new LoginController(mDatabase);
-		if(registerController != null){
-			registerController.removeListener(this);
-		}
-
 		loginController.addListener(this);
 		mMainView.getContentPane().removeAll();
 		mMainView.getContentPane().add(loginController.loginView);
 		mMainView.repaint();
 		mMainView.revalidate();
 	}
-
-
-	protected  void loadTwit(){
-		TwitupTwitView twitView= new TwitupTwitView();
-		mMainView.getContentPane().removeAll();
-		mMainView.getContentPane().add(twitView);
-		mMainView.repaint();
-		mMainView.revalidate();
-	}
-
 
 	protected  void loadRegister(){
 		registerController = new RegisterController(mDatabase);

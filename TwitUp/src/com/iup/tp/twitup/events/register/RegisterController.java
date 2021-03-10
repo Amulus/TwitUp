@@ -27,6 +27,7 @@ public class RegisterController implements IRegisterObserver{
 
     protected User userNotExists(String username, String password,String tag) {
         for (User user : mDatabase.getUsers()) {
+            if((username == null) && (password == null) && (tag == null)) return null;
             if (user.getName().equals(username) && user.getUserPassword().equals(password)) {
                 return null;
             }
@@ -35,7 +36,6 @@ public class RegisterController implements IRegisterObserver{
         mDatabase.addUser(user);
         return user;
     }
-
 
     @Override
     public void notifyRegister(String u, String p, String tag) {
