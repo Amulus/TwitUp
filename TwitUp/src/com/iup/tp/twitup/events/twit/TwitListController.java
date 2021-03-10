@@ -24,4 +24,9 @@ public class TwitListController implements ITwitListController{
     public void removeListener(ITwitUpObserver listener) {
         listeners.add(listener);
     }
+
+    @Override
+    public void notifyAddTwit() {
+
+    }
 }

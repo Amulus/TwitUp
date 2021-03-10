@@ -67,6 +67,8 @@ public class Twitup implements ITwitUpObserver{
 	protected  TwitListController twitListController;
 	private AppDatabaseObserver mConsole;
 
+
+
 	public static User userLogged;
 	/**
 	 * Constructeur.
@@ -231,21 +233,36 @@ public class Twitup implements ITwitUpObserver{
 	}
 
 	@Override
-	public void notifyRegisterToLogin() {
+	public void notifyRegister() {
 		System.out.println("Changement de page à effectué");
 		loadLogin();
 	}
 
 
 	@Override
-	public void notifyLoginToRegister() {
+	public void notifyCancel() {
 		System.out.println("Changement de page à effectué");
 		loadRegister();
 	}
 
 	@Override
-	public void notifyLoginToTwitList() {
+	public void notifySendTwit() {
 		System.out.println("Changement de page à effectué");
 		loadTwitList();
 	}
+
+	@Override
+	public void notifyLogOut() {
+		userLogged = null;
+		mMainView.onLogout();
+		loadLogin();
+	}
+
+	@Override
+	public void notifyLogin() {
+		System.out.println("Changement de page à effectué");
+		mMainView.onLogin();
+		loadTwitList();
+	}
+
 }
