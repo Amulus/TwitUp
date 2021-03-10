@@ -31,10 +31,10 @@ public class TwitListView extends JPanel {
         }
         createTwtit = new JButton("add twit");
         createTwtit.addActionListener(e -> doAddTwit());
-        add(createTwtit,new GridBagConstraints(0, index+1, 1, 1, 0, 0, GridBagConstraints.WEST, 1 , new java.awt.Insets(1,0,0,0), 0, 0));
+        add(createTwtit,new GridBagConstraints(0, index, 1, 1, 0, 0, GridBagConstraints.WEST, 1 , new java.awt.Insets(1,0,0,0), 0, 0));
         listUser = new JButton("view all users");
         listUser.addActionListener(e -> doUsers());
-        add(listUser,new GridBagConstraints(1, index+1, 1, 1, 0, 0, GridBagConstraints.EAST, 1 , new java.awt.Insets(1,0,0,0), 0, 0));
+        add(listUser,new GridBagConstraints(1, index, 1, 1, 0, 0, GridBagConstraints.EAST, 1 , new java.awt.Insets(1,0,0,0), 0, 0));
 
     }
     private void doUsers(){ listeners.forEach((c) -> c.notifyViewUsers());}

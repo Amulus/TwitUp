@@ -13,6 +13,7 @@ import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.events.register.RegisterController;
 import com.iup.tp.twitup.events.twit.ITwitCreateController;
 import com.iup.tp.twitup.events.twit.TwitListController;
+import com.iup.tp.twitup.events.user.UserListController;
 import com.iup.tp.twitup.ihm.*;
 
 import com.iup.tp.twitup.events.login.LoginController;
@@ -67,6 +68,7 @@ public class Twitup implements ITwitUpObserver{
 	protected  RegisterController registerController;
 	protected  TwitListController twitListController;
 	protected ITwitCreateController createTwitController;
+	protected UserListController userListController;
 	private AppDatabaseObserver mConsole;
 
 
@@ -200,14 +202,6 @@ public class Twitup implements ITwitUpObserver{
 	}
 
 
-	protected  void loadTwit(){
-		TwitupTwitView twitView= new TwitupTwitView();
-		mMainView.getContentPane().removeAll();
-		mMainView.getContentPane().add(twitView);
-		mMainView.repaint();
-		mMainView.revalidate();
-	}
-
 
 	protected  void loadRegister(){
 		registerController = new RegisterController(mDatabase);
@@ -226,6 +220,16 @@ public class Twitup implements ITwitUpObserver{
 		mMainView.getContentPane().add(twitListController.twitListView);
 		mMainView.repaint();
 		mMainView.revalidate();
+	}
+
+	private void loadUsersList() {
+		userListController = new UserListController(mDatabase);
+		userListController.addListener(this);
+		mMainView.getContentPane().removeAll();
+		mMainView.getContentPane().add(twitListController.twitListView);
+		mMainView.repaint();
+		mMainView.revalidate();
+
 	}
 
 	private void loadCreateTwit() {
@@ -275,6 +279,11 @@ public class Twitup implements ITwitUpObserver{
 	@Override
 	public void notifyCancelCreate() {
 		loadTwitList();
+	}
+
+	@Override
+	public void notifyUsers() {
+		loadUsersList();
 	}
 
 

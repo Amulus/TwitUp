@@ -26,7 +26,7 @@ public class TwitUpUserView extends JPanel {
             this.name.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             this.avatar = new JLabel(avatar);
             this.avatar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            this.tag = new JLabel(userTag);
+            this.tag = new JLabel("@"+userTag);
             this.tag.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             this.followUserButton = new JButton("Follow the user");
             followUserButton.addActionListener(e -> doFollow());

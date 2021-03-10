@@ -8,6 +8,6 @@ public interface ITwitUpObserver {
     void notifySendTwit();
     void notifyLogOut();
     void notifyCreateTwit();
-
     void notifyCancelCreate();
+    void notifyUsers();
 }
