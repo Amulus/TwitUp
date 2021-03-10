@@ -33,6 +33,6 @@ public class TwitListController implements ITwitListController{
 
     @Override
     public void notifyViewUsers() {
-        listeners.forEach((c) -> c.notifyUsers());
+        listeners.forEach(ITwitUpObserver::notifyUsers);
     }
 }

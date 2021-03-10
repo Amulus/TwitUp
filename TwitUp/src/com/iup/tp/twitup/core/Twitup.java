@@ -13,6 +13,7 @@ import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.events.register.RegisterController;
 import com.iup.tp.twitup.events.twit.ITwitCreateController;
 import com.iup.tp.twitup.events.twit.TwitListController;
+import com.iup.tp.twitup.events.user.UserListController;
 import com.iup.tp.twitup.ihm.*;
 
 import com.iup.tp.twitup.events.login.LoginController;
@@ -67,6 +68,7 @@ public class Twitup implements ITwitUpObserver{
 	protected  RegisterController registerController;
 	protected  TwitListController twitListController;
 	protected ITwitCreateController createTwitController;
+	protected UserListController userListController;
 	private AppDatabaseObserver mConsole;
 
 
@@ -133,7 +135,7 @@ public class Twitup implements ITwitUpObserver{
 	/**
 	 * Indique si le fichier donné est valide pour servire de répertoire
 	 * d'échange
-	 *
+	 * 
 	 * @param directory
 	 *            , Répertoire à tester.
 	 */
@@ -150,8 +152,8 @@ public class Twitup implements ITwitUpObserver{
 		TwitupMock mock = new TwitupMock(this.mDatabase, this.mEntityManager);
 		mock.showGUI();
 	}
-
-
+	
+	
 	/**
 	 * Initialisation de la base de données
 	 */
@@ -165,18 +167,18 @@ public class Twitup implements ITwitUpObserver{
 		mDatabase.addTwit(twit);
 		mDatabase.addTwit(twit2);
 	}
-
+	
 	/**
 	 * Initialisation de l'observer de la base de données
 	 */
-
+	
 	protected void initObserver() {
 			mConsole = new AppDatabaseObserver();
 			mDatabase.addObserver(mConsole);
 		}
 	/**
 	 * Initialisation du répertoire d'échange.
-	 *
+	 * 
 	 * @param directoryPath
 	 */
 	public void initDirectory(String directoryPath) {
@@ -200,6 +202,7 @@ public class Twitup implements ITwitUpObserver{
 	}
 
 
+
 	protected  void loadRegister(){
 		registerController = new RegisterController(mDatabase);
 		registerController.addListener(this);
@@ -217,6 +220,16 @@ public class Twitup implements ITwitUpObserver{
 		mMainView.getContentPane().add(twitListController.twitListView);
 		mMainView.repaint();
 		mMainView.revalidate();
+	}
+
+	private void loadUsersList() {
+		userListController = new UserListController(mDatabase);
+		userListController.addListener(this);
+		mMainView.getContentPane().removeAll();
+		mMainView.getContentPane().add(twitListController.twitListView);
+		mMainView.repaint();
+		mMainView.revalidate();
+
 	}
 
 	private void loadCreateTwit() {
@@ -270,7 +283,7 @@ public class Twitup implements ITwitUpObserver{
 
 	@Override
 	public void notifyUsers() {
-
+		loadUsersList();
 	}
 
 
